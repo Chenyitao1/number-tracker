@@ -103,10 +103,42 @@ body {
 
 /* 按钮网格 */
 .buttons-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-  gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   margin-bottom: 30px;
+}
+
+/* 生肖行样式 */
+.zodiac-row {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.zodiac-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b;
+  min-width: 80px;
+  text-align: center;
+  padding: 8px 12px;
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
+}
+
+.zodiac-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  flex: 1;
+  align-items: center;
 }
 
 .number-button {
@@ -122,6 +154,8 @@ body {
   justify-content: center;
   position: relative;
   overflow: hidden;
+  min-width: 60px;
+  min-height: 60px;
 }
 
 .number-button:hover {
@@ -219,6 +253,82 @@ body {
   padding: 20px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
+}
+
+/* 统计卡片样式 */
+.statistics-card {
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.statistics-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 20px;
+}
+
+.statistics-icon {
+  font-size: 1.4rem;
+}
+
+.statistics-grid {
+  display: flex;
+  justify-content: center;
+}
+
+.stat-item {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  min-width: 200px;
+}
+
+.stat-item:hover {
+  transform: translateY(-2px);
+}
+
+.stat-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 4px;
+}
+
+.stat-subtitle {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  font-weight: 500;
 }
 
 .records-title {
@@ -334,6 +444,34 @@ body {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.delete-amount-btn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  margin-left: 4px;
+}
+
+.delete-amount-btn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+  transform: scale(1.1);
+}
+
+.delete-amount-btn:active {
+  transform: scale(0.95);
 }
 
 .plus {
@@ -538,13 +676,40 @@ body {
   margin: 0;
 }
 
+.delete-confirm-modal .modal-header {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.delete-warning {
+  text-align: center;
+  color: #374151;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
 /* 响应式设计 */
 @media (max-width: 768px) {
-  .buttons-grid {
-    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-    gap: 10px;
+  .zodiac-row {
+    padding: 12px;
+    gap: 12px;
   }
-  
+
+  .zodiac-label {
+    font-size: 1rem;
+    min-width: 60px;
+    padding: 6px 10px;
+  }
+
+  .zodiac-buttons {
+    gap: 8px;
+  }
+
+  .number-button {
+    min-width: 50px;
+    min-height: 50px;
+  }
+
   .button-number {
     font-size: 1.1rem;
   }
@@ -560,16 +725,46 @@ body {
   .modal {
     margin: 20px;
   }
+
+  .stat-value {
+    font-size: 1.6rem;
+  }
+
+  .stat-item {
+    min-width: 160px;
+    padding: 16px;
+  }
+
+  .delete-amount-btn {
+    font-size: 0.7rem;
+    min-width: 14px;
+    height: 14px;
+  }
 }
 
 @media (max-width: 480px) {
   .main-content {
     padding: 15px;
   }
-  
-  .buttons-grid {
-    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+
+  .zodiac-row {
+    padding: 10px;
     gap: 8px;
+  }
+
+  .zodiac-label {
+    font-size: 0.9rem;
+    min-width: 50px;
+    padding: 4px 8px;
+  }
+
+  .zodiac-buttons {
+    gap: 6px;
+  }
+
+  .number-button {
+    min-width: 45px;
+    min-height: 45px;
   }
   
   .button-number {
@@ -590,6 +785,26 @@ body {
   
   .btn {
     padding: 15px 20px;
+  }
+
+  .statistics-card {
+    padding: 15px;
+  }
+
+  .stat-item {
+    padding: 12px;
+    min-width: 140px;
+  }
+
+  .stat-value {
+    font-size: 1.4rem;
+  }
+
+  .delete-amount-btn {
+    font-size: 0.65rem;
+    min-width: 12px;
+    height: 12px;
+    margin-left: 2px;
   }
 }
 
